@@ -9,6 +9,14 @@
 </div> -->
 
 <div class="row">
+    <h2>After Login</h2>
+    @if (Session["LoggedUsername"] != null)
+    {
+        <text>
+            Welcome @Session["LoggedUsername"].ToString()
+        </text>
+    }
+    
     <h3>Telerik UI for ASP.NET MVC PanelBar</h3>
     <br />
 
