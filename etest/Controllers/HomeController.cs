@@ -26,5 +26,44 @@ namespace etest.Controllers
 
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(user u)
+        {
+            if(ModelState.IsValid){
+                using (ge_test_schemaEntities ge = new ge_test_schemaEntities())
+                {
+                    var v = ge.users.Where(a => a.LoginName.Equals(u.LoginName) &&
+                        a.Password.Equals(u.Password)).FirstOrDefault();
+                    if(v != null){
+                        Session["LoggedUserID"] = v.UserID.ToString();
+                        Session["LoggedUsername"] = v.LoginName.ToString();
+                        return RedirectToAction("Main");
+                    }
+                }
+            }
+            return View();
+        }
+
+        public ActionResult Main()
+        {
+            if(Session["LoggedUserID"] != null){
+                return View();
+            } else {
+                return RedirectToAction("Login");
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            Session.RemoveAll();
+            return RedirectToAction("Index");
+        }
     }
 }
