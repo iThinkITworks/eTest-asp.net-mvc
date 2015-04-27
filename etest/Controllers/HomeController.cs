@@ -10,21 +10,40 @@ namespace etest.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if(Session["LoggedUserID"] != null){
+                return View();
+            } else {
+                return RedirectToAction("Login");
+            }
+            //return View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            if (Session["LoggedUserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            if (Session["LoggedUserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult Login()
@@ -44,26 +63,26 @@ namespace etest.Controllers
                     if(v != null){
                         Session["LoggedUserID"] = v.UserID.ToString();
                         Session["LoggedUsername"] = v.LoginName.ToString();
-                        return RedirectToAction("Main");
+                        return RedirectToAction("Index");
                     }
                 }
             }
             return View();
         }
 
-        public ActionResult Main()
-        {
-            if(Session["LoggedUserID"] != null){
-                return View();
-            } else {
-                return RedirectToAction("Login");
-            }
-        }
+        //public ActionResult Main()
+        //{
+        //    if(Session["LoggedUserID"] != null){
+        //        return View();
+        //    } else {
+        //        return RedirectToAction("Login");
+        //    }
+        //}
 
         public ActionResult Logout()
         {
             Session.RemoveAll();
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
     }
 }
