@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="da497124efb541c9a015ffa68b29bceb" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="ge_test_schemaModel.analysis" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.blossomclass" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.case_log" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.cell_cases" Width="1.5" PointX="8.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.cell_items" Width="1.5" PointX="10.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.curriculum" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.faculty" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.faculty_type" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.item_keys" Width="1.5" PointX="12.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.item_log" Width="1.5" PointX="17.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.key_log_use" Width="1.5" PointX="16" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.notification" Width="1.5" PointX="5.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.semester" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.syllabu" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.system_logs" Width="1.5" PointX="5.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.team_teach" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.topic_coverage" Width="1.5" PointX="9.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.tq" Width="1.5" PointX="9.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.tq_answer_key" Width="1.5" PointX="12" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.tq_cases" Width="1.5" PointX="13.5" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.tq_coverage" Width="1.5" PointX="7.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.tq_coverage_log" Width="1.5" PointX="12.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.tq_generate" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.tq_items" Width="1.5" PointX="15.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.tq_log" Width="1.5" PointX="15" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.user" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ge_test_schemaModel.year_level" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_CaseLog_CellCaseID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_CaseLog_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_CellCases_AuthoredBy_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_CellCases_CurriculumID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_CellCases_SyllabusID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_CellItems_CellCaseID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqCases_CellCaseID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_CellItems_AuthoredBy_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_ItemKeys_CellItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_ItemLog_CellItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqItems_CellItemID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_Syllabus_CurriculumID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TeamTeach_CurriculumID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqCoverage_CurriculumID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_Users_FacultyID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_KeyLogUse_ItemKeyID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqItems_ItemKeyID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_ItemLog_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_KeyLogUse_TqID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_notification_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TopicCoverage_SyllabusID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_SystemLogs_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TeamTeach_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqCoverage_TeamTeachID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TopicCoverage_TqCoverageID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_Tq_TqCoverageID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqAnswerKey_TqID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqCases_TqID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqLog_TqID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqItems_TqCaseID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqCoverageLog_TqCoverageID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqCoverageLog_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="ge_test_schemaModel.FK_TqLog_UserID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

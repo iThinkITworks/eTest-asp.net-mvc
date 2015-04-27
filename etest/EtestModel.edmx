@@ -1,0 +1,2194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ge_test_schemaModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="analysis">
+          <Key>
+            <PropertyRef Name="idanalysis" />
+          </Key>
+          <Property Name="idanalysis" Type="int" Nullable="false" />
+          <Property Name="cellitemID" Type="varchar" MaxLength="45" />
+          <Property Name="StudentID" Type="varchar" MaxLength="45" />
+          <Property Name="Answer" Type="varchar" MaxLength="45" />
+          <Property Name="Result" Type="int" />
+          <Property Name="tqID" Type="int" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="blossomclass">
+          <Key>
+            <PropertyRef Name="idblossomClass" />
+          </Key>
+          <Property Name="idblossomClass" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="case_log">
+          <Key>
+            <PropertyRef Name="CaseLogId" />
+          </Key>
+          <Property Name="CaseLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CellCaseID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="DateRemarked" Type="datetime" Precision="0" />
+          <Property Name="ActionDone" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="cell_cases">
+          <Key>
+            <PropertyRef Name="CellCaseID" />
+          </Key>
+          <Property Name="CellCaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurriculumID" Type="int" />
+          <Property Name="SyllabusID" Type="int" />
+          <Property Name="Case" Type="text" />
+          <Property Name="AuthoredBy_UserID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Precision="0" />
+          <Property Name="ApprovalStatus" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="cell_items">
+          <Key>
+            <PropertyRef Name="CellItemID" />
+          </Key>
+          <Property Name="CellItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CellCaseID" Type="int" />
+          <Property Name="BloomsClass" Type="varchar" MaxLength="60" />
+          <Property Name="Item" Type="text" />
+          <Property Name="OptionA" Type="varchar" MaxLength="15" />
+          <Property Name="OptionB" Type="varchar" MaxLength="15" />
+          <Property Name="OptionC" Type="varchar" MaxLength="15" />
+          <Property Name="OptionD" Type="varchar" MaxLength="15" />
+          <Property Name="Status" Type="varchar" MaxLength="60" />
+          <Property Name="DifficultIndex" Type="varchar" MaxLength="15" />
+          <Property Name="DiscriminationIndex" Type="varchar" MaxLength="15" />
+          <Property Name="AuthoredBy_UserID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="curriculum">
+          <Key>
+            <PropertyRef Name="CurriculumID" />
+          </Key>
+          <Property Name="CurriculumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YearLevel" Type="varchar" MaxLength="10" />
+          <Property Name="Subject" Type="varchar" MaxLength="60" />
+          <Property Name="DescriptiveTitle" Type="text" />
+          <Property Name="NormCourseOffering" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="faculty">
+          <Key>
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="FacultyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="60" />
+          <Property Name="Middlename" Type="varchar" MaxLength="60" />
+          <Property Name="Lastname" Type="varchar" MaxLength="60" />
+          <Property Name="Position" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="faculty_type">
+          <Key>
+            <PropertyRef Name="id_faculty_type" />
+          </Key>
+          <Property Name="id_faculty_type" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="item_keys">
+          <Key>
+            <PropertyRef Name="ItemKeyID" />
+          </Key>
+          <Property Name="ItemKeyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CellItemID" Type="int" />
+          <Property Name="Key" Type="varchar" MaxLength="100" />
+          <Property Name="Answer" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="item_log">
+          <Key>
+            <PropertyRef Name="ItemLogID" />
+          </Key>
+          <Property Name="ItemLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CellItemID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="DateRemarked" Type="datetime" Precision="0" />
+          <Property Name="ActionDone" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'def.ge_test_schema.key_log' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="key_log">
+          <Property Name="ItemKeyID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="DateRemarked" Type="datetime" Precision="0" />
+          <Property Name="ActionDone" Type="varchar" MaxLength="30" />
+        </EntityType>-->
+        <EntityType Name="key_log_use">
+          <Key>
+            <PropertyRef Name="KeyLogUseID" />
+          </Key>
+          <Property Name="KeyLogUseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemKeyID" Type="int" />
+          <Property Name="DateUsed" Type="date" />
+          <Property Name="TqID" Type="int" />
+        </EntityType>
+        <EntityType Name="notifications">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Sender" Type="varchar" MaxLength="45" />
+          <Property Name="Notice" Type="text" />
+          <Property Name="Remarks" Type="text" />
+          <Property Name="NoteDate" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="semester">
+          <Key>
+            <PropertyRef Name="id_semester" />
+          </Key>
+          <Property Name="id_semester" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="syllabus">
+          <Key>
+            <PropertyRef Name="SyllabusID" />
+          </Key>
+          <Property Name="SyllabusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurriculumID" Type="int" />
+          <Property Name="TopicNo" Type="smallint" />
+          <Property Name="Topic" Type="text" />
+          <Property Name="EstimatedTime" Type="double" />
+        </EntityType>
+        <EntityType Name="system_logs">
+          <Key>
+            <PropertyRef Name="SystemLogID" />
+          </Key>
+          <Property Name="SystemLogID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="EntryDateTime" Type="datetime" Precision="0" />
+          <Property Name="Activity" Type="text" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'def.ge_test_schema.team_members' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="team_members">
+          <Property Name="TeamTeachID" Type="int" />
+          <Property Name="FacultyID" Type="int" />
+        </EntityType>-->
+        <EntityType Name="team_teach">
+          <Key>
+            <PropertyRef Name="TeamTeachID" />
+          </Key>
+          <Property Name="TeamTeachID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurriculumID" Type="int" />
+          <Property Name="SchoolYear" Type="varchar" MaxLength="15" />
+          <Property Name="Semester" Type="varchar" MaxLength="15" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="topic_coverage">
+          <Key>
+            <PropertyRef Name="TopicCoverageID" />
+          </Key>
+          <Property Name="TopicCoverageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TqCoverageID" Type="int" />
+          <Property Name="SyllabusID" Type="int" />
+          <Property Name="HoursSpent" Type="double" />
+          <Property Name="Proportion" Type="double" />
+          <Property Name="RememberU" Type="smallint" />
+          <Property Name="RememberA" Type="smallint" />
+          <Property Name="UnderstandU" Type="smallint" />
+          <Property Name="UnderstandA" Type="smallint" />
+          <Property Name="ApplyU" Type="smallint" />
+          <Property Name="ApplyA" Type="smallint" />
+          <Property Name="AnalyzeU" Type="smallint" />
+          <Property Name="AnalyzeA" Type="smallint" />
+          <Property Name="EvaluateU" Type="smallint" />
+          <Property Name="EvaluateA" Type="smallint" />
+          <Property Name="CreateU" Type="smallint" />
+          <Property Name="CreateA" Type="smallint" />
+          <Property Name="TotalItemsRequired" Type="double" />
+        </EntityType>
+        <EntityType Name="tq">
+          <Key>
+            <PropertyRef Name="TqID" />
+          </Key>
+          <Property Name="TqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TqCoverageID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Precision="0" />
+          <Property Name="Status" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tq_answer_key">
+          <Key>
+            <PropertyRef Name="TqAnswerKey" />
+          </Key>
+          <Property Name="TqAnswerKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TqID" Type="int" />
+          <Property Name="ItemNo" Type="smallint" />
+          <Property Name="Answer" Type="text" />
+        </EntityType>
+        <EntityType Name="tq_cases">
+          <Key>
+            <PropertyRef Name="TqCaseID" />
+          </Key>
+          <Property Name="TqCaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TqID" Type="int" />
+          <Property Name="CellCaseID" Type="int" />
+        </EntityType>
+        <EntityType Name="tq_coverage">
+          <Key>
+            <PropertyRef Name="TqCoverageID" />
+          </Key>
+          <Property Name="TqCoverageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurriculumID" Type="int" />
+          <Property Name="TeamTeachID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Precision="0" />
+          <Property Name="TotalHoursCoverage" Type="double" />
+          <Property Name="TotalItems" Type="smallint" />
+          <Property Name="Status" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tq_coverage_log">
+          <Key>
+            <PropertyRef Name="TqCoverageLogID" />
+          </Key>
+          <Property Name="TqCoverageLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TqCoverageID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="DateRemarked" Type="datetime" Precision="0" />
+          <Property Name="ActionDone" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tq_generate">
+          <Key>
+            <PropertyRef Name="idtq_generate" />
+          </Key>
+          <Property Name="idtq_generate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SyllabusID" Type="int" />
+          <Property Name="Hours_Spent" Type="int" />
+          <Property Name="Proportion" Type="varchar" MaxLength="45" />
+          <Property Name="rememberU" Type="varchar" MaxLength="45" />
+          <Property Name="rememberA" Type="varchar" MaxLength="45" />
+          <Property Name="understandU" Type="varchar" MaxLength="45" />
+          <Property Name="understandA" Type="varchar" MaxLength="45" />
+          <Property Name="applyU" Type="varchar" MaxLength="45" />
+          <Property Name="applyA" Type="varchar" MaxLength="45" />
+          <Property Name="analyzeU" Type="varchar" MaxLength="45" />
+          <Property Name="analyzeA" Type="varchar" MaxLength="45" />
+          <Property Name="evaluateU" Type="varchar" MaxLength="45" />
+          <Property Name="evaluateA" Type="varchar" MaxLength="45" />
+          <Property Name="createU" Type="varchar" MaxLength="45" />
+          <Property Name="createA" Type="varchar" MaxLength="45" />
+          <Property Name="totalItems" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="tq_items">
+          <Key>
+            <PropertyRef Name="TqItemID" />
+          </Key>
+          <Property Name="TqItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TqCaseID" Type="int" />
+          <Property Name="CellItemID" Type="int" />
+          <Property Name="ItemKeyID" Type="int" />
+        </EntityType>
+        <EntityType Name="tq_log">
+          <Key>
+            <PropertyRef Name="TqLogID" />
+          </Key>
+          <Property Name="TqLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TqID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="DateRemarked" Type="datetime" Precision="0" />
+          <Property Name="ActionDone" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacultyID" Type="int" />
+          <Property Name="LoginName" Type="varchar" MaxLength="45" />
+          <Property Name="Password" Type="varchar" MaxLength="45" />
+          <Property Name="UserType" Type="varchar" MaxLength="45" />
+          <Property Name="Assignment" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="year_level">
+          <Key>
+            <PropertyRef Name="id_year_level" />
+          </Key>
+          <Property Name="id_year_level" Type="int" Nullable="false" />
+          <Property Name="level" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'def.ge_test_schema.enrolled_faculty_view' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="enrolled_faculty_view">
+          <Property Name="LastName" Type="varchar" MaxLength="60" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="60" />
+          <Property Name="FirstName" Type="varchar" MaxLength="60" />
+          <Property Name="Position" Type="varchar" MaxLength="45" />
+          <Property Name="LoginName" Type="varchar" MaxLength="45" />
+          <Property Name="Password" Type="varchar" MaxLength="45" />
+          <Property Name="Assignment" Type="varchar" MaxLength="15" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'def.ge_test_schema.enrolled_semestral_team_view' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="enrolled_semestral_team_view">
+          <Property Name="SchoolYear" Type="varchar" MaxLength="15" />
+          <Property Name="Semester" Type="varchar" MaxLength="15" />
+          <Property Name="YearLevel" Type="varchar" MaxLength="10" />
+          <Property Name="Subject" Type="varchar" MaxLength="60" />
+          <Property Name="TeamLeader" Type="varchar" MaxLength="184" />
+          <Property Name="Members" Type="varchar" MaxLength="184" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'def.ge_test_schema.enrolled_syllabus_view' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="enrolled_syllabus_view">
+          <Property Name="SchoolYear" Type="varchar" MaxLength="15" />
+          <Property Name="Semester" Type="varchar" MaxLength="15" />
+          <Property Name="YearLevel" Type="varchar" MaxLength="10" />
+          <Property Name="TopicNo" Type="smallint" />
+          <Property Name="Topic" Type="text" />
+        </EntityType>-->
+        <Association Name="FK_CaseLog_CellCaseID">
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="0..1" />
+          <End Role="case_log" Type="Self.case_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_cases">
+              <PropertyRef Name="CellCaseID" />
+            </Principal>
+            <Dependent Role="case_log">
+              <PropertyRef Name="CellCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CaseLog_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="case_log" Type="Self.case_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="case_log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellCases_AuthoredBy_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="cell_cases">
+              <PropertyRef Name="AuthoredBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellCases_CurriculumID">
+          <End Role="curriculum" Type="Self.curriculum" Multiplicity="0..1" />
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curriculum">
+              <PropertyRef Name="CurriculumID" />
+            </Principal>
+            <Dependent Role="cell_cases">
+              <PropertyRef Name="CurriculumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellCases_SyllabusID">
+          <End Role="syllabus" Type="Self.syllabus" Multiplicity="0..1" />
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syllabus">
+              <PropertyRef Name="SyllabusID" />
+            </Principal>
+            <Dependent Role="cell_cases">
+              <PropertyRef Name="SyllabusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellItems_AuthoredBy_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="cell_items">
+              <PropertyRef Name="AuthoredBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellItems_CellCaseID">
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="0..1" />
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_cases">
+              <PropertyRef Name="CellCaseID" />
+            </Principal>
+            <Dependent Role="cell_items">
+              <PropertyRef Name="CellCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemKeys_CellItemID">
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="0..1" />
+          <End Role="item_keys" Type="Self.item_keys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_items">
+              <PropertyRef Name="CellItemID" />
+            </Principal>
+            <Dependent Role="item_keys">
+              <PropertyRef Name="CellItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLog_CellItemID">
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="0..1" />
+          <End Role="item_log" Type="Self.item_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_items">
+              <PropertyRef Name="CellItemID" />
+            </Principal>
+            <Dependent Role="item_log">
+              <PropertyRef Name="CellItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLog_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="item_log" Type="Self.item_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="item_log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'def.ge_test_schema.key_log' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_KeyLog_ItemKeyID" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'def.ge_test_schema.key_log' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_KeyLog_UserID" />-->
+        <Association Name="FK_KeyLogUse_ItemKeyID">
+          <End Role="item_keys" Type="Self.item_keys" Multiplicity="0..1" />
+          <End Role="key_log_use" Type="Self.key_log_use" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item_keys">
+              <PropertyRef Name="ItemKeyID" />
+            </Principal>
+            <Dependent Role="key_log_use">
+              <PropertyRef Name="ItemKeyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeyLogUse_TqID">
+          <End Role="tq" Type="Self.tq" Multiplicity="0..1" />
+          <End Role="key_log_use" Type="Self.key_log_use" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq">
+              <PropertyRef Name="TqID" />
+            </Principal>
+            <Dependent Role="key_log_use">
+              <PropertyRef Name="TqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_notification_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="notifications" Type="Self.notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="notifications">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Syllabus_CurriculumID">
+          <End Role="curriculum" Type="Self.curriculum" Multiplicity="0..1" />
+          <End Role="syllabus" Type="Self.syllabus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curriculum">
+              <PropertyRef Name="CurriculumID" />
+            </Principal>
+            <Dependent Role="syllabus">
+              <PropertyRef Name="CurriculumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemLogs_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="system_logs" Type="Self.system_logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="system_logs">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'def.ge_test_schema.team_members' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_TeamMembers_FacultyID" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'def.ge_test_schema.team_members' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_TeamMembers_TeamTeachID" />-->
+        <Association Name="FK_TeamTeach_CurriculumID">
+          <End Role="curriculum" Type="Self.curriculum" Multiplicity="0..1" />
+          <End Role="team_teach" Type="Self.team_teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curriculum">
+              <PropertyRef Name="CurriculumID" />
+            </Principal>
+            <Dependent Role="team_teach">
+              <PropertyRef Name="CurriculumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamTeach_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="team_teach" Type="Self.team_teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="team_teach">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicCoverage_SyllabusID">
+          <End Role="syllabus" Type="Self.syllabus" Multiplicity="0..1" />
+          <End Role="topic_coverage" Type="Self.topic_coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syllabus">
+              <PropertyRef Name="SyllabusID" />
+            </Principal>
+            <Dependent Role="topic_coverage">
+              <PropertyRef Name="SyllabusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicCoverage_TqCoverageID">
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="0..1" />
+          <End Role="topic_coverage" Type="Self.topic_coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq_coverage">
+              <PropertyRef Name="TqCoverageID" />
+            </Principal>
+            <Dependent Role="topic_coverage">
+              <PropertyRef Name="TqCoverageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tq_TqCoverageID">
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="0..1" />
+          <End Role="tq" Type="Self.tq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq_coverage">
+              <PropertyRef Name="TqCoverageID" />
+            </Principal>
+            <Dependent Role="tq">
+              <PropertyRef Name="TqCoverageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqAnswerKey_TqID">
+          <End Role="tq" Type="Self.tq" Multiplicity="0..1" />
+          <End Role="tq_answer_key" Type="Self.tq_answer_key" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq">
+              <PropertyRef Name="TqID" />
+            </Principal>
+            <Dependent Role="tq_answer_key">
+              <PropertyRef Name="TqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCases_CellCaseID">
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="0..1" />
+          <End Role="tq_cases" Type="Self.tq_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_cases">
+              <PropertyRef Name="CellCaseID" />
+            </Principal>
+            <Dependent Role="tq_cases">
+              <PropertyRef Name="CellCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCases_TqID">
+          <End Role="tq" Type="Self.tq" Multiplicity="0..1" />
+          <End Role="tq_cases" Type="Self.tq_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq">
+              <PropertyRef Name="TqID" />
+            </Principal>
+            <Dependent Role="tq_cases">
+              <PropertyRef Name="TqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCoverage_CurriculumID">
+          <End Role="curriculum" Type="Self.curriculum" Multiplicity="0..1" />
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curriculum">
+              <PropertyRef Name="CurriculumID" />
+            </Principal>
+            <Dependent Role="tq_coverage">
+              <PropertyRef Name="CurriculumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCoverage_TeamTeachID">
+          <End Role="team_teach" Type="Self.team_teach" Multiplicity="0..1" />
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="team_teach">
+              <PropertyRef Name="TeamTeachID" />
+            </Principal>
+            <Dependent Role="tq_coverage">
+              <PropertyRef Name="TeamTeachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCoverageLog_TqCoverageID">
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="0..1" />
+          <End Role="tq_coverage_log" Type="Self.tq_coverage_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq_coverage">
+              <PropertyRef Name="TqCoverageID" />
+            </Principal>
+            <Dependent Role="tq_coverage_log">
+              <PropertyRef Name="TqCoverageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCoverageLog_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="tq_coverage_log" Type="Self.tq_coverage_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tq_coverage_log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqItems_CellItemID">
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="0..1" />
+          <End Role="tq_items" Type="Self.tq_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_items">
+              <PropertyRef Name="CellItemID" />
+            </Principal>
+            <Dependent Role="tq_items">
+              <PropertyRef Name="CellItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqItems_ItemKeyID">
+          <End Role="item_keys" Type="Self.item_keys" Multiplicity="0..1" />
+          <End Role="tq_items" Type="Self.tq_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item_keys">
+              <PropertyRef Name="ItemKeyID" />
+            </Principal>
+            <Dependent Role="tq_items">
+              <PropertyRef Name="ItemKeyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqItems_TqCaseID">
+          <End Role="tq_cases" Type="Self.tq_cases" Multiplicity="0..1" />
+          <End Role="tq_items" Type="Self.tq_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq_cases">
+              <PropertyRef Name="TqCaseID" />
+            </Principal>
+            <Dependent Role="tq_items">
+              <PropertyRef Name="TqCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqLog_TqID">
+          <End Role="tq" Type="Self.tq" Multiplicity="0..1" />
+          <End Role="tq_log" Type="Self.tq_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq">
+              <PropertyRef Name="TqID" />
+            </Principal>
+            <Dependent Role="tq_log">
+              <PropertyRef Name="TqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqLog_UserID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="tq_log" Type="Self.tq_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tq_log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_FacultyID">
+          <End Role="faculty" Type="Self.faculty" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faculty">
+              <PropertyRef Name="FacultyID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="FacultyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ge_test_schemaModelStoreContainer">
+          <EntitySet Name="analysis" EntityType="Self.analysis" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="blossomclass" EntityType="Self.blossomclass" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="case_log" EntityType="Self.case_log" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="cell_cases" EntityType="Self.cell_cases" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="cell_items" EntityType="Self.cell_items" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="curriculum" EntityType="Self.curriculum" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="faculty" EntityType="Self.faculty" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="faculty_type" EntityType="Self.faculty_type" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="item_keys" EntityType="Self.item_keys" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="item_log" EntityType="Self.item_log" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="key_log_use" EntityType="Self.key_log_use" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="notifications" EntityType="Self.notifications" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="semester" EntityType="Self.semester" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="syllabus" EntityType="Self.syllabus" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="system_logs" EntityType="Self.system_logs" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="team_teach" EntityType="Self.team_teach" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="topic_coverage" EntityType="Self.topic_coverage" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="tq" EntityType="Self.tq" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="tq_answer_key" EntityType="Self.tq_answer_key" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="tq_cases" EntityType="Self.tq_cases" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="tq_coverage" EntityType="Self.tq_coverage" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="tq_coverage_log" EntityType="Self.tq_coverage_log" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="tq_generate" EntityType="Self.tq_generate" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="tq_items" EntityType="Self.tq_items" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="tq_log" EntityType="Self.tq_log" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="ge_test_schema" store:Type="Tables" />
+          <EntitySet Name="year_level" EntityType="Self.year_level" Schema="ge_test_schema" store:Type="Tables" />
+          <AssociationSet Name="FK_CaseLog_CellCaseID" Association="Self.FK_CaseLog_CellCaseID">
+            <End Role="cell_cases" EntitySet="cell_cases" />
+            <End Role="case_log" EntitySet="case_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CaseLog_UserID" Association="Self.FK_CaseLog_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="case_log" EntitySet="case_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellCases_AuthoredBy_UserID" Association="Self.FK_CellCases_AuthoredBy_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="cell_cases" EntitySet="cell_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellCases_CurriculumID" Association="Self.FK_CellCases_CurriculumID">
+            <End Role="curriculum" EntitySet="curriculum" />
+            <End Role="cell_cases" EntitySet="cell_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellCases_SyllabusID" Association="Self.FK_CellCases_SyllabusID">
+            <End Role="syllabus" EntitySet="syllabus" />
+            <End Role="cell_cases" EntitySet="cell_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellItems_AuthoredBy_UserID" Association="Self.FK_CellItems_AuthoredBy_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="cell_items" EntitySet="cell_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellItems_CellCaseID" Association="Self.FK_CellItems_CellCaseID">
+            <End Role="cell_cases" EntitySet="cell_cases" />
+            <End Role="cell_items" EntitySet="cell_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemKeys_CellItemID" Association="Self.FK_ItemKeys_CellItemID">
+            <End Role="cell_items" EntitySet="cell_items" />
+            <End Role="item_keys" EntitySet="item_keys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLog_CellItemID" Association="Self.FK_ItemLog_CellItemID">
+            <End Role="cell_items" EntitySet="cell_items" />
+            <End Role="item_log" EntitySet="item_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLog_UserID" Association="Self.FK_ItemLog_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="item_log" EntitySet="item_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeyLogUse_ItemKeyID" Association="Self.FK_KeyLogUse_ItemKeyID">
+            <End Role="item_keys" EntitySet="item_keys" />
+            <End Role="key_log_use" EntitySet="key_log_use" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeyLogUse_TqID" Association="Self.FK_KeyLogUse_TqID">
+            <End Role="tq" EntitySet="tq" />
+            <End Role="key_log_use" EntitySet="key_log_use" />
+          </AssociationSet>
+          <AssociationSet Name="FK_notification_UserID" Association="Self.FK_notification_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="notifications" EntitySet="notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Syllabus_CurriculumID" Association="Self.FK_Syllabus_CurriculumID">
+            <End Role="curriculum" EntitySet="curriculum" />
+            <End Role="syllabus" EntitySet="syllabus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemLogs_UserID" Association="Self.FK_SystemLogs_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="system_logs" EntitySet="system_logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamTeach_CurriculumID" Association="Self.FK_TeamTeach_CurriculumID">
+            <End Role="curriculum" EntitySet="curriculum" />
+            <End Role="team_teach" EntitySet="team_teach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamTeach_UserID" Association="Self.FK_TeamTeach_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="team_teach" EntitySet="team_teach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicCoverage_SyllabusID" Association="Self.FK_TopicCoverage_SyllabusID">
+            <End Role="syllabus" EntitySet="syllabus" />
+            <End Role="topic_coverage" EntitySet="topic_coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicCoverage_TqCoverageID" Association="Self.FK_TopicCoverage_TqCoverageID">
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+            <End Role="topic_coverage" EntitySet="topic_coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tq_TqCoverageID" Association="Self.FK_Tq_TqCoverageID">
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+            <End Role="tq" EntitySet="tq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqAnswerKey_TqID" Association="Self.FK_TqAnswerKey_TqID">
+            <End Role="tq" EntitySet="tq" />
+            <End Role="tq_answer_key" EntitySet="tq_answer_key" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCases_CellCaseID" Association="Self.FK_TqCases_CellCaseID">
+            <End Role="cell_cases" EntitySet="cell_cases" />
+            <End Role="tq_cases" EntitySet="tq_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCases_TqID" Association="Self.FK_TqCases_TqID">
+            <End Role="tq" EntitySet="tq" />
+            <End Role="tq_cases" EntitySet="tq_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCoverage_CurriculumID" Association="Self.FK_TqCoverage_CurriculumID">
+            <End Role="curriculum" EntitySet="curriculum" />
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCoverage_TeamTeachID" Association="Self.FK_TqCoverage_TeamTeachID">
+            <End Role="team_teach" EntitySet="team_teach" />
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCoverageLog_TqCoverageID" Association="Self.FK_TqCoverageLog_TqCoverageID">
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+            <End Role="tq_coverage_log" EntitySet="tq_coverage_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCoverageLog_UserID" Association="Self.FK_TqCoverageLog_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="tq_coverage_log" EntitySet="tq_coverage_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqItems_CellItemID" Association="Self.FK_TqItems_CellItemID">
+            <End Role="cell_items" EntitySet="cell_items" />
+            <End Role="tq_items" EntitySet="tq_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqItems_ItemKeyID" Association="Self.FK_TqItems_ItemKeyID">
+            <End Role="item_keys" EntitySet="item_keys" />
+            <End Role="tq_items" EntitySet="tq_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqItems_TqCaseID" Association="Self.FK_TqItems_TqCaseID">
+            <End Role="tq_cases" EntitySet="tq_cases" />
+            <End Role="tq_items" EntitySet="tq_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqLog_TqID" Association="Self.FK_TqLog_TqID">
+            <End Role="tq" EntitySet="tq" />
+            <End Role="tq_log" EntitySet="tq_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqLog_UserID" Association="Self.FK_TqLog_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="tq_log" EntitySet="tq_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_FacultyID" Association="Self.FK_Users_FacultyID">
+            <End Role="faculty" EntitySet="faculty" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ge_test_schemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="analysis">
+          <Key>
+            <PropertyRef Name="idanalysis" />
+          </Key>
+          <Property Name="idanalysis" Type="Int32" Nullable="false" />
+          <Property Name="cellitemID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="StudentID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Answer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Result" Type="Int32" />
+          <Property Name="tqID" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="blossomclass">
+          <Key>
+            <PropertyRef Name="idblossomClass" />
+          </Key>
+          <Property Name="idblossomClass" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="case_log">
+          <Key>
+            <PropertyRef Name="CaseLogId" />
+          </Key>
+          <Property Name="CaseLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CellCaseID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateRemarked" Type="DateTime" />
+          <Property Name="ActionDone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cell_cases" Relationship="Self.FK_CaseLog_CellCaseID" FromRole="case_log" ToRole="cell_cases" />
+          <NavigationProperty Name="user" Relationship="Self.FK_CaseLog_UserID" FromRole="case_log" ToRole="users" />
+        </EntityType>
+        <EntityType Name="cell_cases">
+          <Key>
+            <PropertyRef Name="CellCaseID" />
+          </Key>
+          <Property Name="CellCaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurriculumID" Type="Int32" />
+          <Property Name="SyllabusID" Type="Int32" />
+          <Property Name="Case" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AuthoredBy_UserID" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" />
+          <Property Name="ApprovalStatus" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="case_log" Relationship="Self.FK_CaseLog_CellCaseID" FromRole="cell_cases" ToRole="case_log" />
+          <NavigationProperty Name="user" Relationship="Self.FK_CellCases_AuthoredBy_UserID" FromRole="cell_cases" ToRole="users" />
+          <NavigationProperty Name="curriculum" Relationship="Self.FK_CellCases_CurriculumID" FromRole="cell_cases" ToRole="curriculum" />
+          <NavigationProperty Name="syllabu" Relationship="Self.FK_CellCases_SyllabusID" FromRole="cell_cases" ToRole="syllabus" />
+          <NavigationProperty Name="cell_items" Relationship="Self.FK_CellItems_CellCaseID" FromRole="cell_cases" ToRole="cell_items" />
+          <NavigationProperty Name="tq_cases" Relationship="Self.FK_TqCases_CellCaseID" FromRole="cell_cases" ToRole="tq_cases" />
+        </EntityType>
+        <EntityType Name="cell_items">
+          <Key>
+            <PropertyRef Name="CellItemID" />
+          </Key>
+          <Property Name="CellItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CellCaseID" Type="Int32" />
+          <Property Name="BloomsClass" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Item" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="OptionA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OptionB" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OptionC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OptionD" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="DifficultIndex" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DiscriminationIndex" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="AuthoredBy_UserID" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" />
+          <NavigationProperty Name="cell_cases" Relationship="Self.FK_CellItems_CellCaseID" FromRole="cell_items" ToRole="cell_cases" />
+          <NavigationProperty Name="user" Relationship="Self.FK_CellItems_AuthoredBy_UserID" FromRole="cell_items" ToRole="users" />
+          <NavigationProperty Name="item_keys" Relationship="Self.FK_ItemKeys_CellItemID" FromRole="cell_items" ToRole="item_keys" />
+          <NavigationProperty Name="item_log" Relationship="Self.FK_ItemLog_CellItemID" FromRole="cell_items" ToRole="item_log" />
+          <NavigationProperty Name="tq_items" Relationship="Self.FK_TqItems_CellItemID" FromRole="cell_items" ToRole="tq_items" />
+        </EntityType>
+        <EntityType Name="curriculum">
+          <Key>
+            <PropertyRef Name="CurriculumID" />
+          </Key>
+          <Property Name="CurriculumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YearLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptiveTitle" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="NormCourseOffering" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cell_cases" Relationship="Self.FK_CellCases_CurriculumID" FromRole="curriculum" ToRole="cell_cases" />
+          <NavigationProperty Name="syllabus" Relationship="Self.FK_Syllabus_CurriculumID" FromRole="curriculum" ToRole="syllabus" />
+          <NavigationProperty Name="team_teach" Relationship="Self.FK_TeamTeach_CurriculumID" FromRole="curriculum" ToRole="team_teach" />
+          <NavigationProperty Name="tq_coverage" Relationship="Self.FK_TqCoverage_CurriculumID" FromRole="curriculum" ToRole="tq_coverage" />
+        </EntityType>
+        <EntityType Name="faculty">
+          <Key>
+            <PropertyRef Name="FacultyID" />
+          </Key>
+          <Property Name="FacultyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Middlename" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK_Users_FacultyID" FromRole="faculty" ToRole="users" />
+        </EntityType>
+        <EntityType Name="faculty_type">
+          <Key>
+            <PropertyRef Name="id_faculty_type" />
+          </Key>
+          <Property Name="id_faculty_type" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="item_keys">
+          <Key>
+            <PropertyRef Name="ItemKeyID" />
+          </Key>
+          <Property Name="ItemKeyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CellItemID" Type="Int32" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Answer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cell_items" Relationship="Self.FK_ItemKeys_CellItemID" FromRole="item_keys" ToRole="cell_items" />
+          <NavigationProperty Name="key_log_use" Relationship="Self.FK_KeyLogUse_ItemKeyID" FromRole="item_keys" ToRole="key_log_use" />
+          <NavigationProperty Name="tq_items" Relationship="Self.FK_TqItems_ItemKeyID" FromRole="item_keys" ToRole="tq_items" />
+        </EntityType>
+        <EntityType Name="item_log">
+          <Key>
+            <PropertyRef Name="ItemLogID" />
+          </Key>
+          <Property Name="ItemLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CellItemID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateRemarked" Type="DateTime" />
+          <Property Name="ActionDone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cell_items" Relationship="Self.FK_ItemLog_CellItemID" FromRole="item_log" ToRole="cell_items" />
+          <NavigationProperty Name="user" Relationship="Self.FK_ItemLog_UserID" FromRole="item_log" ToRole="users" />
+        </EntityType>
+        <EntityType Name="key_log_use">
+          <Key>
+            <PropertyRef Name="KeyLogUseID" />
+          </Key>
+          <Property Name="KeyLogUseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemKeyID" Type="Int32" />
+          <Property Name="DateUsed" Type="DateTime" />
+          <Property Name="TqID" Type="Int32" />
+          <NavigationProperty Name="item_keys" Relationship="Self.FK_KeyLogUse_ItemKeyID" FromRole="key_log_use" ToRole="item_keys" />
+          <NavigationProperty Name="tq" Relationship="Self.FK_KeyLogUse_TqID" FromRole="key_log_use" ToRole="tq" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Sender" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Notice" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="NoteDate" Type="DateTime" />
+          <Property Name="Status" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_notification_UserID" FromRole="notifications" ToRole="users" />
+        </EntityType>
+        <EntityType Name="semester">
+          <Key>
+            <PropertyRef Name="id_semester" />
+          </Key>
+          <Property Name="id_semester" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="syllabu">
+          <Key>
+            <PropertyRef Name="SyllabusID" />
+          </Key>
+          <Property Name="SyllabusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurriculumID" Type="Int32" />
+          <Property Name="TopicNo" Type="Int16" />
+          <Property Name="Topic" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="EstimatedTime" Type="Double" />
+          <NavigationProperty Name="cell_cases" Relationship="Self.FK_CellCases_SyllabusID" FromRole="syllabus" ToRole="cell_cases" />
+          <NavigationProperty Name="curriculum" Relationship="Self.FK_Syllabus_CurriculumID" FromRole="syllabus" ToRole="curriculum" />
+          <NavigationProperty Name="topic_coverage" Relationship="Self.FK_TopicCoverage_SyllabusID" FromRole="syllabus" ToRole="topic_coverage" />
+        </EntityType>
+        <EntityType Name="system_logs">
+          <Key>
+            <PropertyRef Name="SystemLogID" />
+          </Key>
+          <Property Name="SystemLogID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="EntryDateTime" Type="DateTime" />
+          <Property Name="Activity" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_SystemLogs_UserID" FromRole="system_logs" ToRole="users" />
+        </EntityType>
+        <EntityType Name="team_teach">
+          <Key>
+            <PropertyRef Name="TeamTeachID" />
+          </Key>
+          <Property Name="TeamTeachID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurriculumID" Type="Int32" />
+          <Property Name="SchoolYear" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Semester" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="curriculum" Relationship="Self.FK_TeamTeach_CurriculumID" FromRole="team_teach" ToRole="curriculum" />
+          <NavigationProperty Name="user" Relationship="Self.FK_TeamTeach_UserID" FromRole="team_teach" ToRole="users" />
+          <NavigationProperty Name="tq_coverage" Relationship="Self.FK_TqCoverage_TeamTeachID" FromRole="team_teach" ToRole="tq_coverage" />
+        </EntityType>
+        <EntityType Name="topic_coverage">
+          <Key>
+            <PropertyRef Name="TopicCoverageID" />
+          </Key>
+          <Property Name="TopicCoverageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TqCoverageID" Type="Int32" />
+          <Property Name="SyllabusID" Type="Int32" />
+          <Property Name="HoursSpent" Type="Double" />
+          <Property Name="Proportion" Type="Double" />
+          <Property Name="RememberU" Type="Int16" />
+          <Property Name="RememberA" Type="Int16" />
+          <Property Name="UnderstandU" Type="Int16" />
+          <Property Name="UnderstandA" Type="Int16" />
+          <Property Name="ApplyU" Type="Int16" />
+          <Property Name="ApplyA" Type="Int16" />
+          <Property Name="AnalyzeU" Type="Int16" />
+          <Property Name="AnalyzeA" Type="Int16" />
+          <Property Name="EvaluateU" Type="Int16" />
+          <Property Name="EvaluateA" Type="Int16" />
+          <Property Name="CreateU" Type="Int16" />
+          <Property Name="CreateA" Type="Int16" />
+          <Property Name="TotalItemsRequired" Type="Double" />
+          <NavigationProperty Name="syllabu" Relationship="Self.FK_TopicCoverage_SyllabusID" FromRole="topic_coverage" ToRole="syllabus" />
+          <NavigationProperty Name="tq_coverage" Relationship="Self.FK_TopicCoverage_TqCoverageID" FromRole="topic_coverage" ToRole="tq_coverage" />
+        </EntityType>
+        <EntityType Name="tq">
+          <Key>
+            <PropertyRef Name="TqID" />
+          </Key>
+          <Property Name="TqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TqCoverageID" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" />
+          <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="key_log_use" Relationship="Self.FK_KeyLogUse_TqID" FromRole="tq" ToRole="key_log_use" />
+          <NavigationProperty Name="tq_coverage" Relationship="Self.FK_Tq_TqCoverageID" FromRole="tq" ToRole="tq_coverage" />
+          <NavigationProperty Name="tq_answer_key" Relationship="Self.FK_TqAnswerKey_TqID" FromRole="tq" ToRole="tq_answer_key" />
+          <NavigationProperty Name="tq_cases" Relationship="Self.FK_TqCases_TqID" FromRole="tq" ToRole="tq_cases" />
+          <NavigationProperty Name="tq_log" Relationship="Self.FK_TqLog_TqID" FromRole="tq" ToRole="tq_log" />
+        </EntityType>
+        <EntityType Name="tq_answer_key">
+          <Key>
+            <PropertyRef Name="TqAnswerKey" />
+          </Key>
+          <Property Name="TqAnswerKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TqID" Type="Int32" />
+          <Property Name="ItemNo" Type="Int16" />
+          <Property Name="Answer" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tq" Relationship="Self.FK_TqAnswerKey_TqID" FromRole="tq_answer_key" ToRole="tq" />
+        </EntityType>
+        <EntityType Name="tq_cases">
+          <Key>
+            <PropertyRef Name="TqCaseID" />
+          </Key>
+          <Property Name="TqCaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TqID" Type="Int32" />
+          <Property Name="CellCaseID" Type="Int32" />
+          <NavigationProperty Name="cell_cases" Relationship="Self.FK_TqCases_CellCaseID" FromRole="tq_cases" ToRole="cell_cases" />
+          <NavigationProperty Name="tq" Relationship="Self.FK_TqCases_TqID" FromRole="tq_cases" ToRole="tq" />
+          <NavigationProperty Name="tq_items" Relationship="Self.FK_TqItems_TqCaseID" FromRole="tq_cases" ToRole="tq_items" />
+        </EntityType>
+        <EntityType Name="tq_coverage">
+          <Key>
+            <PropertyRef Name="TqCoverageID" />
+          </Key>
+          <Property Name="TqCoverageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurriculumID" Type="Int32" />
+          <Property Name="TeamTeachID" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" />
+          <Property Name="TotalHoursCoverage" Type="Double" />
+          <Property Name="TotalItems" Type="Int16" />
+          <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="curriculum" Relationship="Self.FK_TqCoverage_CurriculumID" FromRole="tq_coverage" ToRole="curriculum" />
+          <NavigationProperty Name="team_teach" Relationship="Self.FK_TqCoverage_TeamTeachID" FromRole="tq_coverage" ToRole="team_teach" />
+          <NavigationProperty Name="topic_coverage" Relationship="Self.FK_TopicCoverage_TqCoverageID" FromRole="tq_coverage" ToRole="topic_coverage" />
+          <NavigationProperty Name="tqs" Relationship="Self.FK_Tq_TqCoverageID" FromRole="tq_coverage" ToRole="tq" />
+          <NavigationProperty Name="tq_coverage_log" Relationship="Self.FK_TqCoverageLog_TqCoverageID" FromRole="tq_coverage" ToRole="tq_coverage_log" />
+        </EntityType>
+        <EntityType Name="tq_coverage_log">
+          <Key>
+            <PropertyRef Name="TqCoverageLogID" />
+          </Key>
+          <Property Name="TqCoverageLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TqCoverageID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateRemarked" Type="DateTime" />
+          <Property Name="ActionDone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tq_coverage" Relationship="Self.FK_TqCoverageLog_TqCoverageID" FromRole="tq_coverage_log" ToRole="tq_coverage" />
+          <NavigationProperty Name="user" Relationship="Self.FK_TqCoverageLog_UserID" FromRole="tq_coverage_log" ToRole="users" />
+        </EntityType>
+        <EntityType Name="tq_generate">
+          <Key>
+            <PropertyRef Name="idtq_generate" />
+          </Key>
+          <Property Name="idtq_generate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SyllabusID" Type="Int32" />
+          <Property Name="Hours_Spent" Type="Int32" />
+          <Property Name="Proportion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="rememberU" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="rememberA" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="understandU" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="understandA" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="applyU" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="applyA" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="analyzeU" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="analyzeA" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="evaluateU" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="evaluateA" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="createU" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="createA" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="totalItems" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tq_items">
+          <Key>
+            <PropertyRef Name="TqItemID" />
+          </Key>
+          <Property Name="TqItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TqCaseID" Type="Int32" />
+          <Property Name="CellItemID" Type="Int32" />
+          <Property Name="ItemKeyID" Type="Int32" />
+          <NavigationProperty Name="cell_items" Relationship="Self.FK_TqItems_CellItemID" FromRole="tq_items" ToRole="cell_items" />
+          <NavigationProperty Name="item_keys" Relationship="Self.FK_TqItems_ItemKeyID" FromRole="tq_items" ToRole="item_keys" />
+          <NavigationProperty Name="tq_cases" Relationship="Self.FK_TqItems_TqCaseID" FromRole="tq_items" ToRole="tq_cases" />
+        </EntityType>
+        <EntityType Name="tq_log">
+          <Key>
+            <PropertyRef Name="TqLogID" />
+          </Key>
+          <Property Name="TqLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TqID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateRemarked" Type="DateTime" />
+          <Property Name="ActionDone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tq" Relationship="Self.FK_TqLog_TqID" FromRole="tq_log" ToRole="tq" />
+          <NavigationProperty Name="user" Relationship="Self.FK_TqLog_UserID" FromRole="tq_log" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacultyID" Type="Int32" />
+          <Property Name="LoginName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Assignment" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="case_log" Relationship="Self.FK_CaseLog_UserID" FromRole="users" ToRole="case_log" />
+          <NavigationProperty Name="cell_cases" Relationship="Self.FK_CellCases_AuthoredBy_UserID" FromRole="users" ToRole="cell_cases" />
+          <NavigationProperty Name="cell_items" Relationship="Self.FK_CellItems_AuthoredBy_UserID" FromRole="users" ToRole="cell_items" />
+          <NavigationProperty Name="faculty" Relationship="Self.FK_Users_FacultyID" FromRole="users" ToRole="faculty" />
+          <NavigationProperty Name="item_log" Relationship="Self.FK_ItemLog_UserID" FromRole="users" ToRole="item_log" />
+          <NavigationProperty Name="notifications" Relationship="Self.FK_notification_UserID" FromRole="users" ToRole="notifications" />
+          <NavigationProperty Name="system_logs" Relationship="Self.FK_SystemLogs_UserID" FromRole="users" ToRole="system_logs" />
+          <NavigationProperty Name="team_teach" Relationship="Self.FK_TeamTeach_UserID" FromRole="users" ToRole="team_teach" />
+          <NavigationProperty Name="tq_coverage_log" Relationship="Self.FK_TqCoverageLog_UserID" FromRole="users" ToRole="tq_coverage_log" />
+          <NavigationProperty Name="tq_log" Relationship="Self.FK_TqLog_UserID" FromRole="users" ToRole="tq_log" />
+        </EntityType>
+        <EntityType Name="year_level">
+          <Key>
+            <PropertyRef Name="id_year_level" />
+          </Key>
+          <Property Name="id_year_level" Type="Int32" Nullable="false" />
+          <Property Name="level" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_CaseLog_CellCaseID">
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="0..1" />
+          <End Role="case_log" Type="Self.case_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_cases">
+              <PropertyRef Name="CellCaseID" />
+            </Principal>
+            <Dependent Role="case_log">
+              <PropertyRef Name="CellCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CaseLog_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="case_log" Type="Self.case_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="case_log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellCases_AuthoredBy_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="cell_cases">
+              <PropertyRef Name="AuthoredBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellCases_CurriculumID">
+          <End Role="curriculum" Type="Self.curriculum" Multiplicity="0..1" />
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curriculum">
+              <PropertyRef Name="CurriculumID" />
+            </Principal>
+            <Dependent Role="cell_cases">
+              <PropertyRef Name="CurriculumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellCases_SyllabusID">
+          <End Role="syllabus" Type="Self.syllabu" Multiplicity="0..1" />
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syllabus">
+              <PropertyRef Name="SyllabusID" />
+            </Principal>
+            <Dependent Role="cell_cases">
+              <PropertyRef Name="SyllabusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellItems_CellCaseID">
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="0..1" />
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_cases">
+              <PropertyRef Name="CellCaseID" />
+            </Principal>
+            <Dependent Role="cell_items">
+              <PropertyRef Name="CellCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCases_CellCaseID">
+          <End Role="cell_cases" Type="Self.cell_cases" Multiplicity="0..1" />
+          <End Role="tq_cases" Type="Self.tq_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_cases">
+              <PropertyRef Name="CellCaseID" />
+            </Principal>
+            <Dependent Role="tq_cases">
+              <PropertyRef Name="CellCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CellItems_AuthoredBy_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="cell_items">
+              <PropertyRef Name="AuthoredBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemKeys_CellItemID">
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="0..1" />
+          <End Role="item_keys" Type="Self.item_keys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_items">
+              <PropertyRef Name="CellItemID" />
+            </Principal>
+            <Dependent Role="item_keys">
+              <PropertyRef Name="CellItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLog_CellItemID">
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="0..1" />
+          <End Role="item_log" Type="Self.item_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_items">
+              <PropertyRef Name="CellItemID" />
+            </Principal>
+            <Dependent Role="item_log">
+              <PropertyRef Name="CellItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqItems_CellItemID">
+          <End Role="cell_items" Type="Self.cell_items" Multiplicity="0..1" />
+          <End Role="tq_items" Type="Self.tq_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cell_items">
+              <PropertyRef Name="CellItemID" />
+            </Principal>
+            <Dependent Role="tq_items">
+              <PropertyRef Name="CellItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Syllabus_CurriculumID">
+          <End Role="curriculum" Type="Self.curriculum" Multiplicity="0..1" />
+          <End Role="syllabus" Type="Self.syllabu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curriculum">
+              <PropertyRef Name="CurriculumID" />
+            </Principal>
+            <Dependent Role="syllabus">
+              <PropertyRef Name="CurriculumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamTeach_CurriculumID">
+          <End Role="curriculum" Type="Self.curriculum" Multiplicity="0..1" />
+          <End Role="team_teach" Type="Self.team_teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curriculum">
+              <PropertyRef Name="CurriculumID" />
+            </Principal>
+            <Dependent Role="team_teach">
+              <PropertyRef Name="CurriculumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCoverage_CurriculumID">
+          <End Role="curriculum" Type="Self.curriculum" Multiplicity="0..1" />
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curriculum">
+              <PropertyRef Name="CurriculumID" />
+            </Principal>
+            <Dependent Role="tq_coverage">
+              <PropertyRef Name="CurriculumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_FacultyID">
+          <End Role="faculty" Type="Self.faculty" Multiplicity="0..1" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faculty">
+              <PropertyRef Name="FacultyID" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="FacultyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeyLogUse_ItemKeyID">
+          <End Role="item_keys" Type="Self.item_keys" Multiplicity="0..1" />
+          <End Role="key_log_use" Type="Self.key_log_use" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item_keys">
+              <PropertyRef Name="ItemKeyID" />
+            </Principal>
+            <Dependent Role="key_log_use">
+              <PropertyRef Name="ItemKeyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqItems_ItemKeyID">
+          <End Role="item_keys" Type="Self.item_keys" Multiplicity="0..1" />
+          <End Role="tq_items" Type="Self.tq_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item_keys">
+              <PropertyRef Name="ItemKeyID" />
+            </Principal>
+            <Dependent Role="tq_items">
+              <PropertyRef Name="ItemKeyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemLog_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="item_log" Type="Self.item_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="item_log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeyLogUse_TqID">
+          <End Role="tq" Type="Self.tq" Multiplicity="0..1" />
+          <End Role="key_log_use" Type="Self.key_log_use" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq">
+              <PropertyRef Name="TqID" />
+            </Principal>
+            <Dependent Role="key_log_use">
+              <PropertyRef Name="TqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_notification_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="notifications" Type="Self.notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="notifications">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicCoverage_SyllabusID">
+          <End Role="syllabus" Type="Self.syllabu" Multiplicity="0..1" />
+          <End Role="topic_coverage" Type="Self.topic_coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syllabus">
+              <PropertyRef Name="SyllabusID" />
+            </Principal>
+            <Dependent Role="topic_coverage">
+              <PropertyRef Name="SyllabusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SystemLogs_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="system_logs" Type="Self.system_logs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="system_logs">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamTeach_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="team_teach" Type="Self.team_teach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="team_teach">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCoverage_TeamTeachID">
+          <End Role="team_teach" Type="Self.team_teach" Multiplicity="0..1" />
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="team_teach">
+              <PropertyRef Name="TeamTeachID" />
+            </Principal>
+            <Dependent Role="tq_coverage">
+              <PropertyRef Name="TeamTeachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopicCoverage_TqCoverageID">
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="0..1" />
+          <End Role="topic_coverage" Type="Self.topic_coverage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq_coverage">
+              <PropertyRef Name="TqCoverageID" />
+            </Principal>
+            <Dependent Role="topic_coverage">
+              <PropertyRef Name="TqCoverageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tq_TqCoverageID">
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="0..1" />
+          <End Role="tq" Type="Self.tq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq_coverage">
+              <PropertyRef Name="TqCoverageID" />
+            </Principal>
+            <Dependent Role="tq">
+              <PropertyRef Name="TqCoverageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqAnswerKey_TqID">
+          <End Role="tq" Type="Self.tq" Multiplicity="0..1" />
+          <End Role="tq_answer_key" Type="Self.tq_answer_key" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq">
+              <PropertyRef Name="TqID" />
+            </Principal>
+            <Dependent Role="tq_answer_key">
+              <PropertyRef Name="TqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCases_TqID">
+          <End Role="tq" Type="Self.tq" Multiplicity="0..1" />
+          <End Role="tq_cases" Type="Self.tq_cases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq">
+              <PropertyRef Name="TqID" />
+            </Principal>
+            <Dependent Role="tq_cases">
+              <PropertyRef Name="TqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqLog_TqID">
+          <End Role="tq" Type="Self.tq" Multiplicity="0..1" />
+          <End Role="tq_log" Type="Self.tq_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq">
+              <PropertyRef Name="TqID" />
+            </Principal>
+            <Dependent Role="tq_log">
+              <PropertyRef Name="TqID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqItems_TqCaseID">
+          <End Role="tq_cases" Type="Self.tq_cases" Multiplicity="0..1" />
+          <End Role="tq_items" Type="Self.tq_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq_cases">
+              <PropertyRef Name="TqCaseID" />
+            </Principal>
+            <Dependent Role="tq_items">
+              <PropertyRef Name="TqCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCoverageLog_TqCoverageID">
+          <End Role="tq_coverage" Type="Self.tq_coverage" Multiplicity="0..1" />
+          <End Role="tq_coverage_log" Type="Self.tq_coverage_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tq_coverage">
+              <PropertyRef Name="TqCoverageID" />
+            </Principal>
+            <Dependent Role="tq_coverage_log">
+              <PropertyRef Name="TqCoverageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqCoverageLog_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="tq_coverage_log" Type="Self.tq_coverage_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tq_coverage_log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TqLog_UserID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="tq_log" Type="Self.tq_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tq_log">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ge_test_schemaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="analyses" EntityType="Self.analysis" />
+          <EntitySet Name="blossomclasses" EntityType="Self.blossomclass" />
+          <EntitySet Name="case_log" EntityType="Self.case_log" />
+          <EntitySet Name="cell_cases" EntityType="Self.cell_cases" />
+          <EntitySet Name="cell_items" EntityType="Self.cell_items" />
+          <EntitySet Name="curricula" EntityType="Self.curriculum" />
+          <EntitySet Name="faculties" EntityType="Self.faculty" />
+          <EntitySet Name="faculty_type" EntityType="Self.faculty_type" />
+          <EntitySet Name="item_keys" EntityType="Self.item_keys" />
+          <EntitySet Name="item_log" EntityType="Self.item_log" />
+          <EntitySet Name="key_log_use" EntityType="Self.key_log_use" />
+          <EntitySet Name="notifications" EntityType="Self.notification" />
+          <EntitySet Name="semesters" EntityType="Self.semester" />
+          <EntitySet Name="syllabus" EntityType="Self.syllabu" />
+          <EntitySet Name="system_logs" EntityType="Self.system_logs" />
+          <EntitySet Name="team_teach" EntityType="Self.team_teach" />
+          <EntitySet Name="topic_coverage" EntityType="Self.topic_coverage" />
+          <EntitySet Name="tqs" EntityType="Self.tq" />
+          <EntitySet Name="tq_answer_key" EntityType="Self.tq_answer_key" />
+          <EntitySet Name="tq_cases" EntityType="Self.tq_cases" />
+          <EntitySet Name="tq_coverage" EntityType="Self.tq_coverage" />
+          <EntitySet Name="tq_coverage_log" EntityType="Self.tq_coverage_log" />
+          <EntitySet Name="tq_generate" EntityType="Self.tq_generate" />
+          <EntitySet Name="tq_items" EntityType="Self.tq_items" />
+          <EntitySet Name="tq_log" EntityType="Self.tq_log" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="year_level" EntityType="Self.year_level" />
+          <AssociationSet Name="FK_CaseLog_CellCaseID" Association="Self.FK_CaseLog_CellCaseID">
+            <End Role="cell_cases" EntitySet="cell_cases" />
+            <End Role="case_log" EntitySet="case_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CaseLog_UserID" Association="Self.FK_CaseLog_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="case_log" EntitySet="case_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellCases_AuthoredBy_UserID" Association="Self.FK_CellCases_AuthoredBy_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="cell_cases" EntitySet="cell_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellCases_CurriculumID" Association="Self.FK_CellCases_CurriculumID">
+            <End Role="curriculum" EntitySet="curricula" />
+            <End Role="cell_cases" EntitySet="cell_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellCases_SyllabusID" Association="Self.FK_CellCases_SyllabusID">
+            <End Role="syllabus" EntitySet="syllabus" />
+            <End Role="cell_cases" EntitySet="cell_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellItems_CellCaseID" Association="Self.FK_CellItems_CellCaseID">
+            <End Role="cell_cases" EntitySet="cell_cases" />
+            <End Role="cell_items" EntitySet="cell_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCases_CellCaseID" Association="Self.FK_TqCases_CellCaseID">
+            <End Role="cell_cases" EntitySet="cell_cases" />
+            <End Role="tq_cases" EntitySet="tq_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CellItems_AuthoredBy_UserID" Association="Self.FK_CellItems_AuthoredBy_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="cell_items" EntitySet="cell_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemKeys_CellItemID" Association="Self.FK_ItemKeys_CellItemID">
+            <End Role="cell_items" EntitySet="cell_items" />
+            <End Role="item_keys" EntitySet="item_keys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLog_CellItemID" Association="Self.FK_ItemLog_CellItemID">
+            <End Role="cell_items" EntitySet="cell_items" />
+            <End Role="item_log" EntitySet="item_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqItems_CellItemID" Association="Self.FK_TqItems_CellItemID">
+            <End Role="cell_items" EntitySet="cell_items" />
+            <End Role="tq_items" EntitySet="tq_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Syllabus_CurriculumID" Association="Self.FK_Syllabus_CurriculumID">
+            <End Role="curriculum" EntitySet="curricula" />
+            <End Role="syllabus" EntitySet="syllabus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamTeach_CurriculumID" Association="Self.FK_TeamTeach_CurriculumID">
+            <End Role="curriculum" EntitySet="curricula" />
+            <End Role="team_teach" EntitySet="team_teach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCoverage_CurriculumID" Association="Self.FK_TqCoverage_CurriculumID">
+            <End Role="curriculum" EntitySet="curricula" />
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_FacultyID" Association="Self.FK_Users_FacultyID">
+            <End Role="faculty" EntitySet="faculties" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeyLogUse_ItemKeyID" Association="Self.FK_KeyLogUse_ItemKeyID">
+            <End Role="item_keys" EntitySet="item_keys" />
+            <End Role="key_log_use" EntitySet="key_log_use" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqItems_ItemKeyID" Association="Self.FK_TqItems_ItemKeyID">
+            <End Role="item_keys" EntitySet="item_keys" />
+            <End Role="tq_items" EntitySet="tq_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemLog_UserID" Association="Self.FK_ItemLog_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="item_log" EntitySet="item_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeyLogUse_TqID" Association="Self.FK_KeyLogUse_TqID">
+            <End Role="tq" EntitySet="tqs" />
+            <End Role="key_log_use" EntitySet="key_log_use" />
+          </AssociationSet>
+          <AssociationSet Name="FK_notification_UserID" Association="Self.FK_notification_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="notifications" EntitySet="notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicCoverage_SyllabusID" Association="Self.FK_TopicCoverage_SyllabusID">
+            <End Role="syllabus" EntitySet="syllabus" />
+            <End Role="topic_coverage" EntitySet="topic_coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SystemLogs_UserID" Association="Self.FK_SystemLogs_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="system_logs" EntitySet="system_logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamTeach_UserID" Association="Self.FK_TeamTeach_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="team_teach" EntitySet="team_teach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCoverage_TeamTeachID" Association="Self.FK_TqCoverage_TeamTeachID">
+            <End Role="team_teach" EntitySet="team_teach" />
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopicCoverage_TqCoverageID" Association="Self.FK_TopicCoverage_TqCoverageID">
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+            <End Role="topic_coverage" EntitySet="topic_coverage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tq_TqCoverageID" Association="Self.FK_Tq_TqCoverageID">
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+            <End Role="tq" EntitySet="tqs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqAnswerKey_TqID" Association="Self.FK_TqAnswerKey_TqID">
+            <End Role="tq" EntitySet="tqs" />
+            <End Role="tq_answer_key" EntitySet="tq_answer_key" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCases_TqID" Association="Self.FK_TqCases_TqID">
+            <End Role="tq" EntitySet="tqs" />
+            <End Role="tq_cases" EntitySet="tq_cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqLog_TqID" Association="Self.FK_TqLog_TqID">
+            <End Role="tq" EntitySet="tqs" />
+            <End Role="tq_log" EntitySet="tq_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqItems_TqCaseID" Association="Self.FK_TqItems_TqCaseID">
+            <End Role="tq_cases" EntitySet="tq_cases" />
+            <End Role="tq_items" EntitySet="tq_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCoverageLog_TqCoverageID" Association="Self.FK_TqCoverageLog_TqCoverageID">
+            <End Role="tq_coverage" EntitySet="tq_coverage" />
+            <End Role="tq_coverage_log" EntitySet="tq_coverage_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqCoverageLog_UserID" Association="Self.FK_TqCoverageLog_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="tq_coverage_log" EntitySet="tq_coverage_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TqLog_UserID" Association="Self.FK_TqLog_UserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="tq_log" EntitySet="tq_log" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ge_test_schemaModelStoreContainer" CdmEntityContainer="ge_test_schemaEntities">
+          <EntitySetMapping Name="analyses">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.analysis">
+              <MappingFragment StoreEntitySet="analysis">
+                <ScalarProperty Name="idanalysis" ColumnName="idanalysis" />
+                <ScalarProperty Name="cellitemID" ColumnName="cellitemID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="tqID" ColumnName="tqID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blossomclasses">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.blossomclass">
+              <MappingFragment StoreEntitySet="blossomclass">
+                <ScalarProperty Name="idblossomClass" ColumnName="idblossomClass" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="case_log">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.case_log">
+              <MappingFragment StoreEntitySet="case_log">
+                <ScalarProperty Name="CaseLogId" ColumnName="CaseLogId" />
+                <ScalarProperty Name="CellCaseID" ColumnName="CellCaseID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="DateRemarked" ColumnName="DateRemarked" />
+                <ScalarProperty Name="ActionDone" ColumnName="ActionDone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cell_cases">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.cell_cases">
+              <MappingFragment StoreEntitySet="cell_cases">
+                <ScalarProperty Name="CellCaseID" ColumnName="CellCaseID" />
+                <ScalarProperty Name="CurriculumID" ColumnName="CurriculumID" />
+                <ScalarProperty Name="SyllabusID" ColumnName="SyllabusID" />
+                <ScalarProperty Name="Case" ColumnName="Case" />
+                <ScalarProperty Name="AuthoredBy_UserID" ColumnName="AuthoredBy_UserID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cell_items">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.cell_items">
+              <MappingFragment StoreEntitySet="cell_items">
+                <ScalarProperty Name="CellItemID" ColumnName="CellItemID" />
+                <ScalarProperty Name="CellCaseID" ColumnName="CellCaseID" />
+                <ScalarProperty Name="BloomsClass" ColumnName="BloomsClass" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="OptionA" ColumnName="OptionA" />
+                <ScalarProperty Name="OptionB" ColumnName="OptionB" />
+                <ScalarProperty Name="OptionC" ColumnName="OptionC" />
+                <ScalarProperty Name="OptionD" ColumnName="OptionD" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DifficultIndex" ColumnName="DifficultIndex" />
+                <ScalarProperty Name="DiscriminationIndex" ColumnName="DiscriminationIndex" />
+                <ScalarProperty Name="AuthoredBy_UserID" ColumnName="AuthoredBy_UserID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="curricula">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.curriculum">
+              <MappingFragment StoreEntitySet="curriculum">
+                <ScalarProperty Name="CurriculumID" ColumnName="CurriculumID" />
+                <ScalarProperty Name="YearLevel" ColumnName="YearLevel" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="DescriptiveTitle" ColumnName="DescriptiveTitle" />
+                <ScalarProperty Name="NormCourseOffering" ColumnName="NormCourseOffering" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="faculties">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.faculty">
+              <MappingFragment StoreEntitySet="faculty">
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="faculty_type">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.faculty_type">
+              <MappingFragment StoreEntitySet="faculty_type">
+                <ScalarProperty Name="id_faculty_type" ColumnName="id_faculty_type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item_keys">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.item_keys">
+              <MappingFragment StoreEntitySet="item_keys">
+                <ScalarProperty Name="ItemKeyID" ColumnName="ItemKeyID" />
+                <ScalarProperty Name="CellItemID" ColumnName="CellItemID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="item_log">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.item_log">
+              <MappingFragment StoreEntitySet="item_log">
+                <ScalarProperty Name="ItemLogID" ColumnName="ItemLogID" />
+                <ScalarProperty Name="CellItemID" ColumnName="CellItemID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="DateRemarked" ColumnName="DateRemarked" />
+                <ScalarProperty Name="ActionDone" ColumnName="ActionDone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="key_log_use">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.key_log_use">
+              <MappingFragment StoreEntitySet="key_log_use">
+                <ScalarProperty Name="KeyLogUseID" ColumnName="KeyLogUseID" />
+                <ScalarProperty Name="ItemKeyID" ColumnName="ItemKeyID" />
+                <ScalarProperty Name="DateUsed" ColumnName="DateUsed" />
+                <ScalarProperty Name="TqID" ColumnName="TqID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.notification">
+              <MappingFragment StoreEntitySet="notifications">
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="Notice" ColumnName="Notice" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="NoteDate" ColumnName="NoteDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semesters">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.semester">
+              <MappingFragment StoreEntitySet="semester">
+                <ScalarProperty Name="id_semester" ColumnName="id_semester" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syllabus">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.syllabu">
+              <MappingFragment StoreEntitySet="syllabus">
+                <ScalarProperty Name="SyllabusID" ColumnName="SyllabusID" />
+                <ScalarProperty Name="CurriculumID" ColumnName="CurriculumID" />
+                <ScalarProperty Name="TopicNo" ColumnName="TopicNo" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="EstimatedTime" ColumnName="EstimatedTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="system_logs">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.system_logs">
+              <MappingFragment StoreEntitySet="system_logs">
+                <ScalarProperty Name="SystemLogID" ColumnName="SystemLogID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="team_teach">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.team_teach">
+              <MappingFragment StoreEntitySet="team_teach">
+                <ScalarProperty Name="TeamTeachID" ColumnName="TeamTeachID" />
+                <ScalarProperty Name="CurriculumID" ColumnName="CurriculumID" />
+                <ScalarProperty Name="SchoolYear" ColumnName="SchoolYear" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="topic_coverage">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.topic_coverage">
+              <MappingFragment StoreEntitySet="topic_coverage">
+                <ScalarProperty Name="TopicCoverageID" ColumnName="TopicCoverageID" />
+                <ScalarProperty Name="TqCoverageID" ColumnName="TqCoverageID" />
+                <ScalarProperty Name="SyllabusID" ColumnName="SyllabusID" />
+                <ScalarProperty Name="HoursSpent" ColumnName="HoursSpent" />
+                <ScalarProperty Name="Proportion" ColumnName="Proportion" />
+                <ScalarProperty Name="RememberU" ColumnName="RememberU" />
+                <ScalarProperty Name="RememberA" ColumnName="RememberA" />
+                <ScalarProperty Name="UnderstandU" ColumnName="UnderstandU" />
+                <ScalarProperty Name="UnderstandA" ColumnName="UnderstandA" />
+                <ScalarProperty Name="ApplyU" ColumnName="ApplyU" />
+                <ScalarProperty Name="ApplyA" ColumnName="ApplyA" />
+                <ScalarProperty Name="AnalyzeU" ColumnName="AnalyzeU" />
+                <ScalarProperty Name="AnalyzeA" ColumnName="AnalyzeA" />
+                <ScalarProperty Name="EvaluateU" ColumnName="EvaluateU" />
+                <ScalarProperty Name="EvaluateA" ColumnName="EvaluateA" />
+                <ScalarProperty Name="CreateU" ColumnName="CreateU" />
+                <ScalarProperty Name="CreateA" ColumnName="CreateA" />
+                <ScalarProperty Name="TotalItemsRequired" ColumnName="TotalItemsRequired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tqs">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.tq">
+              <MappingFragment StoreEntitySet="tq">
+                <ScalarProperty Name="TqID" ColumnName="TqID" />
+                <ScalarProperty Name="TqCoverageID" ColumnName="TqCoverageID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tq_answer_key">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.tq_answer_key">
+              <MappingFragment StoreEntitySet="tq_answer_key">
+                <ScalarProperty Name="TqAnswerKey" ColumnName="TqAnswerKey" />
+                <ScalarProperty Name="TqID" ColumnName="TqID" />
+                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tq_cases">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.tq_cases">
+              <MappingFragment StoreEntitySet="tq_cases">
+                <ScalarProperty Name="TqCaseID" ColumnName="TqCaseID" />
+                <ScalarProperty Name="TqID" ColumnName="TqID" />
+                <ScalarProperty Name="CellCaseID" ColumnName="CellCaseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tq_coverage">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.tq_coverage">
+              <MappingFragment StoreEntitySet="tq_coverage">
+                <ScalarProperty Name="TqCoverageID" ColumnName="TqCoverageID" />
+                <ScalarProperty Name="CurriculumID" ColumnName="CurriculumID" />
+                <ScalarProperty Name="TeamTeachID" ColumnName="TeamTeachID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="TotalHoursCoverage" ColumnName="TotalHoursCoverage" />
+                <ScalarProperty Name="TotalItems" ColumnName="TotalItems" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tq_coverage_log">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.tq_coverage_log">
+              <MappingFragment StoreEntitySet="tq_coverage_log">
+                <ScalarProperty Name="TqCoverageLogID" ColumnName="TqCoverageLogID" />
+                <ScalarProperty Name="TqCoverageID" ColumnName="TqCoverageID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="DateRemarked" ColumnName="DateRemarked" />
+                <ScalarProperty Name="ActionDone" ColumnName="ActionDone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tq_generate">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.tq_generate">
+              <MappingFragment StoreEntitySet="tq_generate">
+                <ScalarProperty Name="idtq_generate" ColumnName="idtq_generate" />
+                <ScalarProperty Name="SyllabusID" ColumnName="SyllabusID" />
+                <ScalarProperty Name="Hours_Spent" ColumnName="Hours_Spent" />
+                <ScalarProperty Name="Proportion" ColumnName="Proportion" />
+                <ScalarProperty Name="rememberU" ColumnName="rememberU" />
+                <ScalarProperty Name="rememberA" ColumnName="rememberA" />
+                <ScalarProperty Name="understandU" ColumnName="understandU" />
+                <ScalarProperty Name="understandA" ColumnName="understandA" />
+                <ScalarProperty Name="applyU" ColumnName="applyU" />
+                <ScalarProperty Name="applyA" ColumnName="applyA" />
+                <ScalarProperty Name="analyzeU" ColumnName="analyzeU" />
+                <ScalarProperty Name="analyzeA" ColumnName="analyzeA" />
+                <ScalarProperty Name="evaluateU" ColumnName="evaluateU" />
+                <ScalarProperty Name="evaluateA" ColumnName="evaluateA" />
+                <ScalarProperty Name="createU" ColumnName="createU" />
+                <ScalarProperty Name="createA" ColumnName="createA" />
+                <ScalarProperty Name="totalItems" ColumnName="totalItems" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tq_items">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.tq_items">
+              <MappingFragment StoreEntitySet="tq_items">
+                <ScalarProperty Name="TqItemID" ColumnName="TqItemID" />
+                <ScalarProperty Name="TqCaseID" ColumnName="TqCaseID" />
+                <ScalarProperty Name="CellItemID" ColumnName="CellItemID" />
+                <ScalarProperty Name="ItemKeyID" ColumnName="ItemKeyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tq_log">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.tq_log">
+              <MappingFragment StoreEntitySet="tq_log">
+                <ScalarProperty Name="TqLogID" ColumnName="TqLogID" />
+                <ScalarProperty Name="TqID" ColumnName="TqID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="DateRemarked" ColumnName="DateRemarked" />
+                <ScalarProperty Name="ActionDone" ColumnName="ActionDone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Assignment" ColumnName="Assignment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="year_level">
+            <EntityTypeMapping TypeName="ge_test_schemaModel.year_level">
+              <MappingFragment StoreEntitySet="year_level">
+                <ScalarProperty Name="id_year_level" ColumnName="id_year_level" />
+                <ScalarProperty Name="level" ColumnName="level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
